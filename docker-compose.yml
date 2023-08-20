@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    container_name: kinoapp
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    depends_on:
+#      - postgres
+      - elastic
+
+#  postgres:
+#    image: postgres:14.1-alpine
+#    container_name: postgres_ggok
+#    restart: always
+#    environment:
+#      POSTGRES_PASSWORD: 1234567
+#      POSTGRES_USER: postgres
+#      POSTGRES_DB: postgres
+#      PGDATA: /var/lib/postgresql/data/pgdata
+#    ports:
+#      - "5432:5432"
+#    expose:
+#      - "5432"
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data/pgdata
+
+  elastic:
+    image: elasticsearch:7.17.1
+    ports:
+      - "9200:9200"
+    environment:
+      - "discovery.type=single-node"
+      - "xpack.security.enabled=false"
+      - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
+
+
+volumes:
+  postgres_data:
