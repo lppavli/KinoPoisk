@@ -19,7 +19,10 @@
 API на фреймворке Flask.
 Postgres.
 elasticsearch.
-
+## Подготовка переменных окружения
+```angular2html
+cp .env.example .env
+```
 ## Локальный запуск проекта (из корневой директории)
 ```angular2html
 flask run --debug
