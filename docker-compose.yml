@@ -8,24 +8,24 @@ services:
     env_file:
       - .env
     depends_on:
-#      - postgres
+      - postgres
       - elastic
 
-#  postgres:
-#    image: postgres:14.1-alpine
-#    container_name: postgres_ggok
-#    restart: always
-#    environment:
-#      POSTGRES_PASSWORD: 1234567
-#      POSTGRES_USER: postgres
-#      POSTGRES_DB: postgres
-#      PGDATA: /var/lib/postgresql/data/pgdata
-#    ports:
-#      - "5432:5432"
-#    expose:
-#      - "5432"
-#    volumes:
-#      - postgres_data:/var/lib/postgresql/data/pgdata
+  postgres:
+    image: postgres:14.1-alpine
+    container_name: postgres_ggok
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 1234567
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    expose:
+      - "5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/pgdata
 
   elastic:
     image: elasticsearch:7.17.1
